@@ -1,3 +1,11 @@
+import  HomePage  from './pages/homepage/index'
+
+import './global.scss';
+
 export function App() {
-  return <h1>List User</h1>
+  return (
+    <div>
+      <HomePage />
+    </div>
+  )
 }

@@ -1,0 +1,60 @@
+@import '../../global.scss';
+
+.headerHomePage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    border-bottom: 1px solid #2D2B2B;
+
+    .title {
+        font-size: 2rem;
+        color: #fff;
+        line-height: 2.34;
+    }
+
+    .searchInput {
+        width: 704px;
+        height: 68px;
+        margin-top: 2rem;
+        background-color: $backgroundColor;
+        border: 1px solid #E7E6E6;
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        color: $textColor;
+        font-size: 1.125rem;
+
+        &::placeholder{
+            font-size: 1.125rem;
+            color: #717171;
+        }
+    }
+}
+.userList {
+    max-width: 1440px;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    color: $textColor;
+    margin: 0 auto;
+    text-align: center;
+
+    thead {
+        background-color: $primaryColor;
+        font-weight: 400;
+
+        tr {
+            line-height: 1.69;
+            padding: 0 0.5rem;
+        }
+    }
+
+    tbody { 
+        
+        td {
+            padding: 1rem 0;
+            line-height: 1.69;
+            border-bottom: 1px solid #212121;
+        }
+    }
+}
