@@ -1,0 +1,23 @@
+
+$backgroundColor: #171717;
+$primaryColor: #811AC0;
+$textColor: #D6D6D6;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $backgroundColor;
+    height: auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
