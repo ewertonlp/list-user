@@ -58,3 +58,29 @@
         }
     }
 }
+
+.navUser {
+    color: $primaryColor;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+
+    &:hover {
+        color: $textColor;
+        background-color: $primaryColor;
+    }
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 602px;
+    margin-bottom: 150px;
+}
+
+.loading {
+    position: relative;
+    margin: 2rem auto;
+    color: $textColor;
+    font-size: 1.25rem;
+}
