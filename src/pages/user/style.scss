@@ -1,0 +1,114 @@
+@import '../../global.scss';
+
+small {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  color: #717171;
+}
+
+.headerUserPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 362px;
+  border-bottom: 1px solid #2d2b2b;
+  position: relative;
+
+ 
+
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 4rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    color: #fff;
+    margin-top: 1.5rem;
+  }
+
+  span {
+    font-size: 1.25rem;
+    color: $textColor;
+    line-height: 1.75;
+  }
+}
+
+.tabWrapper {
+  width: 625px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.tabHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1.875rem;
+  text-align: center;
+  position: relative;
+}
+
+.tabItem {
+  position: relative;
+  color: $textColor;
+  flex: 1;
+  text-align: center;
+}
+
+a {
+  color: $textColor;
+  text-decoration: none;
+  font-size: 1.25rem;
+  
+
+  &:hover {
+    color: $primaryColor;
+  }
+}
+
+
+.indicator {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: $primaryColor;
+  width: calc(100% / 3);
+}
+
+.tabContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  overflow: auto;
+  text-align: left;
+  width: 100%;
+  height: auto;
+  margin-top: 2.4375rem;
+  grid-auto-rows: min-content;
+
+  strong {
+    font-size: 1.175rem;
+    line-height: auto;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: auto;
+    color: $textColor;
+  }
+}

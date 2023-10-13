@@ -1,6 +1,25 @@
+import { useEffect, useState } from 'react'
+
+
 import './style.scss'
+import UserDataTable from './components'
 
 export default function HomePage() {
+  const [searchText, setSearchText] = useState('')
+  const [searchValue, setSearchValue] = useState('')
+
+ 
+
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      setSearchText(searchValue) // use searchValue aqui
+    }, 300)
+
+    return () => clearTimeout(debounceTimeout)
+  }, [searchValue])
+
+ 
+
   return (
     <div className="container">
       <header className="headerHomePage">
@@ -9,37 +28,12 @@ export default function HomePage() {
           type="text"
           placeholder="Search user..."
           className="searchInput"
+          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchValue}
         />
       </header>
       <main>
-        <div className='container'>
-          <table className='userList'>
-            <thead className='userListHead'>
-              <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Age</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>código</td>
-                <td>Jennie</td>
-                <td>Nicohls</td>
-                <td>Miss</td>
-                <td>11/02/2023</td>
-                <td>30</td>
-                <td>
-                  <a href="">View profile</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <UserDataTable searchText={searchValue} />
       </main>
     </div>
   )

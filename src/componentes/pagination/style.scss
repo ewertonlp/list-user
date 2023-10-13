@@ -1,0 +1,37 @@
+@import '../../global.scss';
+
+.pagination {
+    display: flex;
+    align-items: center;
+    padding-top: 3rem;
+
+    button {
+        background-color: $backgroundColor;
+        outline: none;
+        border: 1px solid $primaryColor;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 0.2rem;
+        color: $textColor;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:disabled {
+          color: #737373;
+        }
+
+        &:hover {
+          background-color: $primaryColor; 
+        }
+
+        &.active {
+          background-color: $primaryColor; 
+        }
+    }
+
+}
