@@ -1,9 +1,15 @@
-import { useEffect, useState } from 'react'
+import { MouseEvent, SetStateAction, useEffect, useState } from 'react'
 import { AnimatePresence, Variants, motion } from 'framer-motion'
 import { Link, useParams } from 'react-router-dom'
 import { useDetailsUser } from '../../hooks/useDetailUser'
 
 import './style.scss'
+
+interface Tab {
+  name: string;
+  label: string;
+  render: () => JSX.Element;
+}
 
 const tabItem = 'tabItem'
 const selected = 'selected'
@@ -23,14 +29,13 @@ const tabContentVariants: Variants = {
   },
 }
 
-export default function User() {
-  const id = useParams()
+export default function UserDetail() {
+  const id = useParams();
   const { data, isLoading, error } = useDetailsUser(id)
-  const [selectedTab, setSelectedTab] = useState(null)
+  const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
 
   useEffect(() => {
     if (!isLoading && !error && data) {
-      // Os dados estão prontos, selecione a primeira aba
       setSelectedTab(tabs[0])
     }
   }, [isLoading, error, data])
@@ -94,12 +99,12 @@ export default function User() {
 
   console.log(data)
 
-  const handleClick = (e: any, tab: any) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, tab: Tab) => {
     e.preventDefault()
     setSelectedTab(tab)
   }
 
-  const isSelected = (tab: any) => selectedTab?.name === tab.name
+  const isSelected = (tab: Tab) => selectedTab?.name === tab.name
 
   if (isLoading) return 'Carregando...'
   if (error) return 'Ocorreu um erro ao buscar os dados do usuário'
@@ -125,9 +130,9 @@ export default function User() {
             {tabs.map((tab) => (
               <div
                 key={tab.name}
-                className={[tabItem, isSelected(tab) ? selected : '']}
+                className={[tabItem, isSelected(tab) ? selected : ''].join(' ')}
               >
-                <a href="#" onClick={(e: any) => handleClick(e, tab)}>
+                <a href="#" onClick={(e) => handleClick(e as React.MouseEvent<HTMLAnchorElement>, tab)}>
                   {tab.label}
                 </a>
 
@@ -148,7 +153,7 @@ export default function User() {
             ))}
           </div>
 
-          <div className={`tabContent ${isSelected(tabs) ? 'active' : ''}`}>
+          <div className={`tabContent ${selectedTab && isSelected(selectedTab) ? 'active' : ''}`}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTab?.name || 'empty'}
