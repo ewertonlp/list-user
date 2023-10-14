@@ -12,7 +12,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const debounceTimeout = setTimeout(() => {
-      setSearchText(searchValue) // use searchValue aqui
+      setSearchText(searchValue) 
     }, 300)
 
     return () => clearTimeout(debounceTimeout)

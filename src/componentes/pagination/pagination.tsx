@@ -34,6 +34,7 @@ export const Pagination = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        data-testid="previous-button"
       >
         <CaretLeft size={32} weight='bold' />
       </button>
@@ -51,6 +52,7 @@ export const Pagination = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        data-testid="next-button"
       >
         <CaretRight size={32} weight='bold' />
       </button>
