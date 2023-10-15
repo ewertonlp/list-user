@@ -1,14 +1,15 @@
-import { MouseEvent, SetStateAction, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, Variants, motion } from 'framer-motion'
 import { Link, useParams } from 'react-router-dom'
 import { useDetailsUser } from '../../hooks/useDetailUser'
+import { fadeIn } from '../../../variants'
 
 import './style.scss'
 
 interface Tab {
-  name: string;
-  label: string;
-  render: () => JSX.Element;
+  name: string
+  label: string
+  render: () => JSX.Element
 }
 
 const tabItem = 'tabItem'
@@ -30,7 +31,7 @@ const tabContentVariants: Variants = {
 }
 
 export default function UserDetail() {
-  const id = useParams();
+  const id = useParams()
   const { data, isLoading, error } = useDetailsUser(id)
   const [selectedTab, setSelectedTab] = useState<Tab | null>(null)
 
@@ -97,8 +98,6 @@ export default function UserDetail() {
     },
   ]
 
-  console.log(data)
-
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, tab: Tab) => {
     e.preventDefault()
     setSelectedTab(tab)
@@ -113,16 +112,37 @@ export default function UserDetail() {
 
   return (
     <>
-    <Link to="/"><small>Back</small></Link>
-      
+      <Link to="/">
+        <small>Back</small>
+      </Link>
+
       <div className="container">
         <header className="headerUserPage">
-          
-          <img src={data.picture.medium} alt="" />
-          <h2 className="title">
+          <motion.img
+            src={data.picture.medium}
+            alt=""
+            variants={fadeIn('down', 0.2)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+          />
+          <motion.h2
+            className="title"
+            variants={fadeIn('up', 0.2)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+          >
             {data.name.first} {data.name.last}
-          </h2>
-          <span>{data.name.title}</span>
+          </motion.h2>
+          <motion.span
+            variants={fadeIn('up', 0.2)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
+          >
+            {data.name.title}
+          </motion.span>
         </header>
 
         <div className="tabWrapper">
@@ -132,28 +152,36 @@ export default function UserDetail() {
                 key={tab.name}
                 className={[tabItem, isSelected(tab) ? selected : ''].join(' ')}
               >
-                <a href="#" onClick={(e) => handleClick(e as React.MouseEvent<HTMLAnchorElement>, tab)}>
+                <a
+                  href="#"
+                  onClick={(e) =>
+                    handleClick(e as React.MouseEvent<HTMLAnchorElement>, tab)
+                  }
+                >
                   {tab.label}
                 </a>
-
-                {selectedTab && (
+                {isSelected(tab) && (
                   <motion.div
-                    layoutId="indicator"
-                    initial={false}
-                    animate={{
-                      x:
-                        indicatorWidth *
-                        tabs.findIndex((tab) => tab.name === selectedTab.name),
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      height: '3px',
+                      width: '100%',
+                      backgroundColor: '#811AC0',
+                      marginTop: '0.5rem',
                     }}
-                    // transition={{ type: 'tween', duration: 0.2 }}
-                    className="indicator"
                   />
                 )}
               </div>
             ))}
           </div>
 
-          <div className={`tabContent ${selectedTab && isSelected(selectedTab) ? 'active' : ''}`}>
+          <div
+            className={`tabContent ${
+              selectedTab && isSelected(selectedTab) ? 'active' : ''
+            }`}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTab?.name || 'empty'}
